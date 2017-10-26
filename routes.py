@@ -14,9 +14,10 @@ def about():
 
 @app.route('/data',methods = ['POST'])
 def postJSONHandler():
+  print("Here")
   if(request.is_json):
     content=request.get_json()
-    print('content',file=sys.stdout)
+    print(content)
   return 'content'
 
 @app.route('/api/heart_rate/summary', methods= ['POST'])
