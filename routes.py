@@ -1,4 +1,5 @@
 import sys
+import json
 from flask import Flask, request, render_template
  
 app = Flask(__name__)      
@@ -18,17 +19,12 @@ def postJSONHandler():
     print('content',file=sys.stdout)
   return 'content'
 
-@app.route('/instant')
-def instant():
-  return 'instant'
+@app.route('/api/heart_rate/summary', methods= ['POST'])
+def instantaneous():
+  if(request.is_json):
+    data_dict = request.json();
 
-@app.route('/average')
-def average():
-  return 'average'
-
-@app.route('/anomaly')
-def anomaly():
-  return 'anomaly'
+    
  
 if __name__ == '__main__':
   app.run(debug=True, host= '0.0.0.0', port=5000)
