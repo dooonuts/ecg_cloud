@@ -15,8 +15,7 @@ def about():
 def postJSONHandler():
   if(request.is_json):
     content=request.get_json()
-    print(content)
-    sys.stdout.write(content)
+    print('content',file=sys.stdout)
   return 'content'
 
 @app.route('/instant')
