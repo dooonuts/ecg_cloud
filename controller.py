@@ -22,7 +22,7 @@ def data_format(data_dict):
    with open('hrdata.csv', "w") as f:
     writer = csv.writer(f)
     for row in rows:
-        writer.writerow(row)
+        writer.writerow([row])
    return 1
 
 def average(data_dict):
