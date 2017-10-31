@@ -24,7 +24,8 @@ def postJSONHandler():
 @app.route('/api/heart_rate/summary', methods= ['POST'])
 def instantaneous():
   if(request.is_json):
-    data_dict = request.json()
+    data_dict = request.get_json()
+    print(data_dict)
     [time, instant_hr, tachy, brady] =  controller.summary(data_dict)
     # jsonify the lists
     return_dict = { "time" : time, "instantaneous_heart_rate" : instant_hr, \
@@ -37,7 +38,7 @@ def instantaneous():
 @app.route('/api/heart_rate/average', methods= ['POST'])
 def average():
   if(request.is_json):
-    data_dict = request.json()
+    data_dict = request.get_json()
     [avg_per, time_int, average_hr, tachy, brady] = controller.average(data_dict)
     # jsonify the lists 
     return_dict = { "averaging_period" : avg_per, "time_interval" : time_int, \
