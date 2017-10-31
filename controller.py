@@ -20,7 +20,7 @@ def data_format(data_dict):
     voltages = data_dict['voltage']
     rows = zip(times, voltages)
     with open('hrdata.csv', "w") as f:
-        writer = csv.writer(f, delimiter=' ')
+        writer = csv.writer(f, delimiter=',')
         for row in rows:
             writer.writerow(row)
 
