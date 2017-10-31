@@ -10,9 +10,10 @@ def summary(data_dict):
     data_format(data_dict)
     hrm_object = init()
     # need to add instant
-    tachy = hrm_object.anomaly_tf.tachy_tf
-    brady = hrm_object.anomaly_tf.brady_tf
-    return [tachy,brady]
+    instant = hrm_object.instantaneous_hr 
+    tachy   = hrm_object.anomaly_tf.tachy_tf
+    brady   = hrm_object.anomaly_tf.brady_tf
+    return [data_dict['time'], instant, tachy, brady]
 
 
 def data_format(data_dict):
@@ -26,7 +27,14 @@ def data_format(data_dict):
 
 
 def average(data_dict):
-    return 1
+    data_format(data_dict)
+    hrm_object = init()
+    average = hrm_object.average_hr
+    tachy   = hrm_object.anomaly_tf.tachy_tf
+    brady   = hrm_object.anomaly_tf.brady_tf
+    return [data_dict['averaging_period'], data_dict['time'], \
+      average, tachy, brady]
+
 
 
 def init():
