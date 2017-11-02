@@ -4,10 +4,22 @@ import csv
 
 
 def main():
+    """Main function of controller
+
+       :rtype: always returns 1
+    """
+
     return 1
 
 
 def average(data_dict):
+     """Function to get average data from hrm_class
+
+	:param data_dict (dict): the dict to hold times, voltages, avg period
+        :rtype: int avg period used, lists of the times, average heartbeat (bpm), \
+          and true/false lists for if tachy and brady occurred in time period
+     """
+   
      averaging_period = data_format_average(data_dict)
      hrm_object = init()
      average = hrm_object.average_hr
@@ -18,6 +30,7 @@ def average(data_dict):
 
 
 def summary(data_dict):
+    """Function
     data_format_summary(data_dict)
     hrm_object = init()
     # need to add instant
