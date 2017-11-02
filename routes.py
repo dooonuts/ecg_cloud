@@ -30,15 +30,18 @@ def instantaneous():
     if(request.is_json):
         data_dict = request.get_json()
         print(data_dict)
-        # [time, instant_hr, tachy, brady] =  controller.summary(data_dict)
-        [tachy, brady] = controller.summary(data_dict)
+        [time, instant_hr, tachy, brady] =  controller.summary(data_dict)
+        # [tachy, brady] = controller.summary(data_dict)
         # jsonify the lists
-        # return_dict = { "time" : time, "instantaneous_heart_rate" : instant_hr, \
-        #  "tachycardia_annotations" : tachy, "bradycardia_annotations" : brady }
         return_dict = {
+            "time": time,
+            "instantaneous_heart_rate": instant_hr,
             "tachycardia_annotations": tachy,
             "bradycardia_annotations": brady}
-        json_info = json.dumps(return_dic)
+        # return_dict = {
+        #    "tachycardia_annotations": tachy,
+        #    "bradycardia_annotations": brady}
+        json_info = json.dumps(return_dict)
         return json_info
     else:
         raise ValueError("Did not input a JSON file")
@@ -57,7 +60,7 @@ def average():
             "average_heart_rate": average_hr,
             "tachycardia_annotations": tachy,
             "bradycardia_annotations": brady}
-        json_info = json.dumps(return_dic)
+        json_info = json.dumps(return_dict)
         return json_info
     else:
         raise ValueError("Did not input a JSON file")
