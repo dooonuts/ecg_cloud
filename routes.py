@@ -24,6 +24,10 @@ def postJSONHandler():
         print(content)
     return 'content'
 
+@app.route('/api/requests', methods=['GET'])
+def counter():
+   return 1
+
 
 @app.route('/api/heart_rate/summary', methods=['POST'])
 def instantaneous():
