@@ -42,8 +42,9 @@ def summary(data_dict):
     hrm_object = init()
     # need to add instant
     instant = hrm_object.instantaneous_hr
-    tachy = hrm_object.anomaly_tf.tachy_tf
-    brady = hrm_object.anomaly_tf.brady_tf
+    print(hrm_object.anomaly_tf)
+    tachy = hrm_object.anomaly_tf[0]
+    brady = hrm_object.anomaly_tf[1]
     return [data_dict['time'], instant, tachy, brady]
 
 
