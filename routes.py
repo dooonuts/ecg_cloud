@@ -4,6 +4,7 @@ import controller
 from flask import Flask, request, render_template
 
 app = Flask(__name__)
+count = 0
 
 @app.route('/')
 def home():
@@ -17,22 +18,25 @@ def about():
 
 @app.route('/data', methods=['POST'])
 def postJSONHandler():
-    print("Here")
     if(request.is_json):
         content = request.get_json()
-        print(content)
     return 'content'
 
 
 @app.route('/api/requests', methods=['GET'])
 def counter():
   #  count = count+1;
-   return count
+  global count
+  count = count+1
+  return count
 
 
 @app.route('/api/heart_rate/summary', methods=['POST'])
 def instantaneous():
   #  count = count+1;
+  global count
+  count = count+1
+
     if(request.is_json):
         data_dict = request.get_json()
         print(data_dict)
@@ -56,6 +60,8 @@ def instantaneous():
 @app.route('/api/heart_rate/average', methods=['POST'])
 def average():
    # count=count+1
+   global count
+   count = count+1
     if(request.is_json):
         data_dict = request.get_json()
         [avg_per, time_int, average_hr, tachy,
