@@ -30,7 +30,14 @@ def average(data_dict):
 
 
 def summary(data_dict):
-    """Function
+    """Function to get instantaneous data from hrm_class
+
+       :param data_dict (dict): the dict to hold times and voltages
+       :rtype: list of times where instant hr was tested, instantaneous \
+         heart beat (bpm), and true/false lists for it tachy and brady occurred \
+         in time period
+    """
+
     data_format_summary(data_dict)
     hrm_object = init()
     # need to add instant
@@ -42,6 +49,12 @@ def summary(data_dict):
 
 
 def data_format_summary(data_dict):
+    """Function to format the data for routing of summary
+
+       :param data_dict (dict): the dictionary to hold times and voltages
+       :rtype: writes in a text file
+    """
+
     times = data_dict['time']
     voltages = data_dict['voltage']
     rows = zip(times, voltages)
@@ -52,6 +65,13 @@ def data_format_summary(data_dict):
 
 
 def data_format_average(data_dict):
+    """Function to format the data for routing of summary
+
+       :param data_dict (dict): the dictionary to hold times, voltages, and \
+         avg period
+       :rtype: writes in a text file
+    """
+
     times = data_dict['time']
     voltages = data_dict['voltage']
     averaging_period = data_dict['averaging_period']
@@ -64,6 +84,11 @@ def data_format_average(data_dict):
 
 
 def init():
+    """Function to instantiate the hrm object
+
+       :rtype: the hrm_object created
+    """
+
     hrm_object = hrm_class.HrmData('hrdata.csv')
     return hrm_object
 
