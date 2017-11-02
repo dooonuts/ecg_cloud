@@ -8,16 +8,31 @@ count = 0
 
 @app.route('/')
 def home():
+    """Template for home of webpage
+
+       :rtype: home template on html
+    """
+
     return render_template('home.html')
 
 
 @app.route('/about')
 def about():
+    """Template for about for our webpage
+
+       :rtype: about template on html
+    """
+
     return render_template('about.html')
 
 
 @app.route('/data', methods=['POST'])
 def postJSONHandler():
+    """Function to test handling data from JSON
+
+       :rtype: the JSON content
+    """
+  
     if(request.is_json):
         content = request.get_json()
     return 'content'
@@ -33,7 +48,13 @@ def counter():
 
 @app.route('/api/heart_rate/summary', methods=['POST'])
 def instantaneous():
-  #  count = count+1;
+    """Function called when summary route is typed
+
+       Takes in Post only
+
+       :rtype: json to return to user or a Value Error
+    """
+    
   global count
   count = count+1
 
@@ -54,14 +75,21 @@ def instantaneous():
         json_info = json.dumps(return_dict)
         return json_info
     else:
-        raise ValueError("Did not input a JSON file")
+        return 400
 
 
 @app.route('/api/heart_rate/average', methods=['POST'])
 def average():
-   # count=count+1
+    """Function called when average route is typed
+
+       Takes in Post only
+
+       :rtype: json to return to user or a Value Error
+    """
+  
    global count
    count = count+1
+
     if(request.is_json):
         data_dict = request.get_json()
         [avg_per, time_int, average_hr, tachy,
@@ -76,7 +104,7 @@ def average():
         json_info = json.dumps(return_dict)
         return json_info
     else:
-        raise ValueError("Did not input a JSON file")
+        return 400
 
 
 if __name__ == '__main__':
