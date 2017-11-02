@@ -6,6 +6,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 count = 0
 
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -25,22 +26,24 @@ def postJSONHandler():
 
 @app.route('/api/requests', methods=['GET'])
 def counter():
-  #  count = count+1;
-  global count
-  count = count+1
-  return count
+    #  count = count+1;
+    global count
+    count = count + 1
+    print(count)
+    json_count = json.dumps(count)
+    return json_count
 
 
 @app.route('/api/heart_rate/summary', methods=['POST'])
 def instantaneous():
-  #  count = count+1;
-  global count
-  count = count+1
+    #  count = count+1;
+    global count
+    count = count + 1
 
     if(request.is_json):
         data_dict = request.get_json()
         print(data_dict)
-        [time, instant_hr, tachy, brady] =  controller.summary(data_dict)
+        [time, instant_hr, tachy, brady] = controller.summary(data_dict)
         # [tachy, brady] = controller.summary(data_dict)
         # jsonify the lists
         return_dict = {
@@ -59,13 +62,13 @@ def instantaneous():
 
 @app.route('/api/heart_rate/average', methods=['POST'])
 def average():
-   # count=count+1
-   global count
-   count = count+1
+    # count=count+1
+    global count
+    count = count + 1
     if(request.is_json):
         data_dict = request.get_json()
         [avg_per, time_int, average_hr, tachy,
-            brady] = controller.average(data_dict)
+         brady] = controller.average(data_dict)
         # jsonify the lists
         return_dict = {
             "averaging_period": avg_per,

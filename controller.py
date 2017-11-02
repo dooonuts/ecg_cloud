@@ -6,7 +6,7 @@ import csv
 def main():
     """Main function of controller
 
-       :rtype: always returns 1
+       :rtype: always returns 1 if no syntax errors
     """
 
     return 1
@@ -19,9 +19,11 @@ def average(data_dict):
         :rtype: int avg period used, lists of the times, average heartbeat (bpm), \
           and true/false lists for if tachy and brady occurred in time period
      """
-   
+     
      averaging_period = data_format_average(data_dict)
-     hrm_object = init()
+     # try:
+     # hrm_object = init()
+     # except:	
      average = hrm_object.average_hr
      tachy = hrm_object.anomaly_tf.tachy_tf
      brady = hrm_object.anomaly_tf.brady_tf
@@ -42,7 +44,7 @@ def summary(data_dict):
     hrm_object = init()
     # need to add instant
     instant = hrm_object.instantaneous_hr
-    print(hrm_object.anomaly_tf)
+    # print(hrm_object.anomaly_tf)
     tachy = hrm_object.anomaly_tf[0]
     brady = hrm_object.anomaly_tf[1]
     return [data_dict['time'], instant, tachy, brady]
