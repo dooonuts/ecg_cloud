@@ -13,22 +13,22 @@ def main():
 
 
 def average(data_dict):
-     """Function to get average data from hrm_class
+    """Function to get average data from hrm_class
 
-	:param data_dict (dict): the dict to hold times, voltages, avg period
-        :rtype: int avg period used, lists of the times, average heartbeat (bpm), \
-          and true/false lists for if tachy and brady occurred in time period
-     """
-     
-     averaging_period = data_format_average(data_dict)
-     # try:
-     # hrm_object = init()
-     # except:	
-     average = hrm_object.average_hr
-     tachy = hrm_object.anomaly_tf.tachy_tf
-     brady = hrm_object.anomaly_tf.brady_tf
-     return [data_dict['averaging_period'], data_dict['time'],
-         average, tachy, brady]
+       :param data_dict (dict): the dict to hold times, voltages, avg period
+       :rtype: int avg period used, lists of the times, average heartbeat (bpm), \
+         and true/false lists for if tachy and brady occurred in time period
+    """
+
+    averaging_period = data_format_average(data_dict)
+    # try:
+    # hrm_object = init()
+    # except:
+    average = hrm_object.average_hr
+    tachy = hrm_object.anomaly_tf.tachy_tf
+    brady = hrm_object.anomaly_tf.brady_tf
+    return [data_dict['averaging_period'], data_dict['time'],
+            average, tachy, brady]
 
 
 def summary(data_dict):
@@ -79,9 +79,9 @@ def data_format_average(data_dict):
     averaging_period = data_dict['averaging_period']
     rows = zip(times, voltages)
     with open('hrdata.csv', "w") as f:
-         writer = csv.writer(f, delimiter=',')
-         for row in rows:
-             writer.writerow(row)
+        writer = csv.writer(f, delimiter=',')
+        for row in rows:
+            writer.writerow(row)
     return averaging_period
 
 
