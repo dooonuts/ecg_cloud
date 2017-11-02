@@ -1,6 +1,6 @@
 import pandas
 import numpy
-
+import json
 
 def main(filename):
     change_data(filename)
@@ -31,19 +31,29 @@ def file_checker(filename, names):
 
 def change_data(filename):
     names = ["times", "voltages"]
-    data_error = file_checker('filename', names)
+    data_error = file_checker(filename, names)
     if (data_error):
         print("Non-Numeric Value Entered")
         return [{}, {}]
     else:
         ecg_data = pandas.read_csv(
-            self.file, header=None, names=names, converters={
+            filename, header=None, names=names, converters={
                 "times": float, "voltages": float})
         times = ecg_data.times.values
         voltages = ecg_data.voltages.values
-        print(times)
-        print(voltages)
-        return [{}, {}]
+        # print("\"times : \"" + times.tolist())
+        # print(voltages.tolist())
+        # times2 = json.dumps(times.tolist())
+        # voltages2 = json.dumps(voltages.tolist())
+        myTimes = ','.join(map(str, times.tolist())) 
+        myVoltages = ','.join(map(str, voltages.tolist()))
+        with open("json.txt", "w") as text_file:
+           text_file.write("\"time\": [%s],\n" % myTimes)
+           text_file.write("\"voltage\": [%s]\n" % myVoltages)
+
+        
+    return [{}, {}]
+
 
 
 if __name__ == '__main__':
