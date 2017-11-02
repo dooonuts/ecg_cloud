@@ -57,4 +57,4 @@ def change_data(filename):
 
 
 if __name__ == '__main__':
-    main('hrdata.csv')
+    main('/bme590hrm/testdata/test_data1.csv')
