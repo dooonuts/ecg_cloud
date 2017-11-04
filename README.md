@@ -23,3 +23,11 @@ SOFTWARE.
 
 This is a simple program that runs on a server through a Virtual Machine hosted by Duke Collab.
 
+
+API ENDPOINTS:
+
+http://152.3.53.160:5000/api/heart_rate/average
+
+http://152.3.53.160:5000/api/heart_rate/summary
+
+http://152.3.53.160:5000/api/requests
