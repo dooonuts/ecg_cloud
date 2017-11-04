@@ -68,19 +68,21 @@ def instantaneous():
             # [tachy, brady] = controller.summary(data_dict)
             # jsonify the lists
             return_dict = {
-                    "time": time,
-                    "instantaneous_heart_rate": instant_hr,
-                    "tachycardia_annotations": tachy,
-                    "bradycardia_annotations": brady}
+                "time": time,
+                "instantaneous_heart_rate": instant_hr,
+                "tachycardia_annotations": tachy,
+                "bradycardia_annotations": brady}
             # return_dict = {
             #    "tachycardia_annotations": tachy,
             #    "bradycardia_annotations": brady
             json_info = json.dumps(return_dict)
             return json_info
         else:
-            return 400
+            return json.dumps(400)
     except ValueError as err:
-        sys.exit(-1)
+        # sys.exit(-1)
+        # request.raise_for_status()
+        return json.dumps(400)
 
 
 @app.route('/api/heart_rate/average', methods=['POST'])
@@ -98,7 +100,7 @@ def average():
         if(request.is_json):
             data_dict = request.get_json()
             [avg_per, time_int, average_hr, tachy,
-            brady] = controller.average(data_dict)
+             brady] = controller.average(data_dict)
             # jsonify the lists
             return_dict = {
                 "averaging_period": avg_per,
@@ -109,9 +111,11 @@ def average():
             json_info = json.dumps(return_dict)
             return json_info
         else:
-            return 400
+            return json.dumps(400)
     except ValueError as err:
-        sys.exit(-1)
+        # sys.exit(-1)
+        return json.dumps(400)
+        # request.raise_for_status()
 
 
 if __name__ == '__main__':

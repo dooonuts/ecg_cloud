@@ -24,8 +24,8 @@ def average(data_dict):
     try:
         hrm_object = init()
         average = hrm_object.average_hr
-        tachy = hrm_object.anomaly_tf.tachy_tf
-        brady = hrm_object.anomaly_tf.brady_tf
+        tachy = hrm_object.anomaly_tf[0]
+        brady = hrm_object.anomaly_tf[1]
         return [data_dict['averaging_period'], data_dict['time'],
                 average, tachy, brady]
     except ValueError as err:
